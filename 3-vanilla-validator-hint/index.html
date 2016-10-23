@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title> Store</title>
+    <style>
+      form {
+        padding: 15px;
+        text-align: center;
+      }
+
+      form span {
+        display: block;
+      }
+      form + .product-error {
+        display: none;
+      }
+      form.error {
+        border: 1px solid transparent;
+        box-shadow: 0 0 0 4px #ce4e78;
+        border-radius: 4px 4px 0 0 !important;
+      }
+      form.error + .product-error {
+        margin-top: 5px;
+        display: block;
+        background-color: #ce4e78;
+        border-radius: 0 0 4px 4px;
+        box-shadow: 0 0 0 4px #ce4e78;
+        text-align: center;
+        color: white;
+      }
+      form:hover {
+        border: 1px solid transparent;
+        box-shadow: 0 0 0 4px #ce4e78;
+        border-radius: 4px;
+      }
+      .arrow-up {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid black;
+      }
+      .product {
+        width: 285px;
+        height: 300px;
+        vertical-align: bottom;
+        display: inline-block;
+        margin-right: 10px;
+        margin-bottom: 50px;
+      }
+
+      .product img {
+        width: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='container'>
+    </div>
+    <script id='product'  type="text/template">
+      <div class="product">
+      <form id={{id}} action="" onsubmit="return validate(this)">
+        <div class="product__image">
+          <img src="{{featuredImage}}"
+            alt="{{featuredImageAlt}}">
+        </div>
+        <div class="product__info">
+           <h3>{{title}}</h3>
+           <span>{{reference}}</span>
+           <span>Precio</span>
+           <span>{{price}}</span>
+        </div>
+        <div class="cart">
+           <select name="size">
+           <option value=""></option>
+            {% renderOptions(data.variant2) %}
+           </select>
+           <input type="submit" value='Agregar'>
+        </div>
+      </form>
+      <div class="product-error">
+       <div class="arrow-up"></div>
+        <div class="product-grid-error__content">Por favor escoja una talla</div>
+      </div>
+      </div>
+    </script>
+    <script id='option'  type="text/template">
+      <option value="{{id}}">
+      {{name}}
+      </option>
+    </script>
+    <script src="js/utils.js"></script>
+    <script src="js/templateEngine.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
